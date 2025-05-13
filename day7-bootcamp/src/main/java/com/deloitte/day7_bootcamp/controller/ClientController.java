@@ -3,6 +3,7 @@ package com.deloitte.day7_bootcamp.controller;
 import com.deloitte.day7_bootcamp.domain.model.Client;
 import com.deloitte.day7_bootcamp.controller.dto.ClientDTO;
 import com.deloitte.day7_bootcamp.service.ClientService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -38,7 +39,7 @@ public class ClientController {
     }
 
     @PostMapping
-    public ResponseEntity<ClientDTO> create(@RequestBody ClientDTO clientDTO) {
+    public ResponseEntity<ClientDTO> create(@Valid @RequestBody ClientDTO clientDTO) {
         Client newClient = clientDTO.toEntity(clientDTO);
         Client createdClient = clientService.create(newClient);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()

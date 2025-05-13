@@ -27,6 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order create(Order order) {
+        //validar valor minimo e total aqui
         if (order.getId() != null && orderRepository.existsById(order.getId())) {
             throw new IllegalArgumentException("Order with id " + order.getId() + " already exists");
         }
@@ -36,6 +37,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order update(Long id, Order order) {
+        //validar valor minimo e total aqui
         Order existingOrder = findById(id);
         return orderRepository.save(existingOrder);
     }
