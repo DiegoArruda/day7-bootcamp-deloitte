@@ -3,6 +3,8 @@ package com.deloitte.day7_bootcamp.controller;
 import com.deloitte.day7_bootcamp.controller.dto.OrderDTO;
 import com.deloitte.day7_bootcamp.domain.model.Order;
 import com.deloitte.day7_bootcamp.service.OrderService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
+    @Autowired
     private final OrderService orderService;
 
     public OrderController(OrderService orderService) {
@@ -37,7 +40,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public ResponseEntity<OrderDTO> create(@RequestBody OrderDTO orderDTO) {
+    public ResponseEntity<OrderDTO> create(@Valid @RequestBody OrderDTO orderDTO) {
         Order newOrder = orderDTO.toEntity();
         Order createdOrder = orderService.create(newOrder);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()

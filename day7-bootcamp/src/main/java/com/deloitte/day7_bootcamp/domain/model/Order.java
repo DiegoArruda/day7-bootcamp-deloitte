@@ -6,8 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 @Entity
-@Table
 @Data
+@Table(name = "tb_order")
 @NoArgsConstructor
 public class Order {
     @Id
