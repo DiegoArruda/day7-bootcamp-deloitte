@@ -4,6 +4,7 @@ import com.deloitte.day7_bootcamp.domain.model.Client;
 import com.deloitte.day7_bootcamp.controller.dto.ClientDTO;
 import com.deloitte.day7_bootcamp.service.ClientService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/clients")
 public class ClientController {
 
+    @Autowired
     private final ClientService clientService;
 
     public ClientController(ClientService clientService) {
@@ -40,7 +42,7 @@ public class ClientController {
 
     @PostMapping
     public ResponseEntity<ClientDTO> create(@Valid @RequestBody ClientDTO clientDTO) {
-        Client newClient = clientDTO.toEntity(clientDTO);
+        Client newClient = clientDTO.toEntity();
         Client createdClient = clientService.create(newClient);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -51,7 +53,7 @@ public class ClientController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ClientDTO> update(@PathVariable Long id, @RequestBody ClientDTO clientDTO) {
-        Client client = clientDTO.toEntity(clientDTO);
+        Client client = clientDTO.toEntity();
         Client updatedClient = clientService.update(id, client);
         return ResponseEntity.ok(ClientDTO.fromEntity(updatedClient));
     }

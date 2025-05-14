@@ -10,10 +10,10 @@ public class ClientDTO {
     private String name;
     private String email;
 
-    public Client toEntity(ClientDTO dto){
+    public Client toEntity(){
         Client client = new Client();
-        client.setName(dto.getName());
-        client.setEmail(dto.getEmail());
+        client.setName(this.getName());
+        client.setEmail(this.getEmail());
         return client;
     }
 

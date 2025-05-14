@@ -38,7 +38,7 @@ public class OrderController {
 
     @PostMapping
     public ResponseEntity<OrderDTO> create(@RequestBody OrderDTO orderDTO) {
-        Order newOrder = orderDTO.toEntity(orderDTO);
+        Order newOrder = orderDTO.toEntity();
         Order createdOrder = orderService.create(newOrder);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
@@ -49,7 +49,7 @@ public class OrderController {
 
     @PutMapping("/{id}")
     public ResponseEntity<OrderDTO> update(@PathVariable Long id, @RequestBody OrderDTO orderDTO) {
-        Order order = orderDTO.toEntity(orderDTO);
+        Order order = orderDTO.toEntity();
         Order updatedOrder = orderService.update(id, order);
         return ResponseEntity.ok(OrderDTO.fromEntity(updatedOrder));
     }

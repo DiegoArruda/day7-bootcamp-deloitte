@@ -13,6 +13,6 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NonNull
     private double price;
+    private double totalAmount;
 }

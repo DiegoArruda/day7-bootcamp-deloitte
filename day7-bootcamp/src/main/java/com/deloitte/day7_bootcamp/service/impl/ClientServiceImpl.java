@@ -4,12 +4,15 @@ package com.deloitte.day7_bootcamp.service.impl;
 import com.deloitte.day7_bootcamp.domain.model.Client;
 import com.deloitte.day7_bootcamp.domain.repository.ClientRepository;
 import com.deloitte.day7_bootcamp.service.ClientService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Service
 public class ClientServiceImpl implements ClientService {
-
+    @Autowired
     private final ClientRepository clientRepository;
 
     public ClientServiceImpl(ClientRepository clientRepository) {
